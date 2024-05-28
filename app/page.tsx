@@ -3,10 +3,13 @@ import Link from "next/link"
 import FetchedData from '@/components/fetchedData'
 import { db } from '@/db'
 import { guest } from '@/db/schema'
-import { convertUnixToMMDDYYYYHHMM } from '@/lib/utils'
+import CreatedAtDate from '@/components/createdAtDate'
+import { desc } from 'drizzle-orm'
+
+export const dynamic = 'force-dynamic'
 
 export default async function Page() {
-  const guests = await db.select().from(guest)
+  const guests = await db.select().from(guest).orderBy(desc(guest.created_at));
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -29,10 +32,10 @@ export default async function Page() {
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {
-                  guests.map((guest) => (
+                  guests && guests.map((guest) => (
                     <tr key={guest.id}>
                       <td className="px-4 py-3 text-sm text-gray-900">{guest.name}</td>
-                      <td className="px-4 py-3 text-sm text-gray-900">{convertUnixToMMDDYYYYHHMM(guest.created_at as number)}</td>
+                      <td className="px-4 py-3 text-sm text-gray-900"><CreatedAtDate timestamp={guest.created_at}></CreatedAtDate></td>
                       <td className="px-4 py-3 text-sm break-words max-w-40">
                         {guest.comment}
                       </td>

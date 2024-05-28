@@ -12,7 +12,7 @@ async function fetchData(): Promise<string> {
       } else {
         reject(`Failed: ${r}`)
       }
-    }, 200)
+    }, 50)
   })
 }
 
@@ -24,7 +24,6 @@ const FetchedData = async () => {
     cleanData = await fetchData()
 
   } catch(error: any) {
-    console.error('Error fetching data:', error);
 
     return (
       <div className="py-2 text-xs">

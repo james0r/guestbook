@@ -3,6 +3,7 @@
 import { db } from '@/db'
 import { guest } from '@/db/schema'
 import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
 const schema = z.object({
@@ -28,16 +29,24 @@ export async function addGuest(prevState: any, formData: FormData) {
     }
   }
 
-  // const rawFormData = {
-
-  //   created_at: Date.now()
-  // }
-
-  const result = await db.insert(guest).values(rawFormData)
+  try {
+    await db.insert(guest).values({
+      name: validatedFields.data.name,
+      comment: validatedFields.data.comment,
+    })
+  } catch (error) {
+    return {
+      errors: {
+        general: 'An error occurred while processing your request. Please try again.',
+      },
+    }
+  }
+  
+  revalidatePath('/')
+  redirect('/')
 
   return {
     message: "Form data processed"
   }
 
-  revalidatePath('/')
 }

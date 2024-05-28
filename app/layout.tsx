@@ -1,7 +1,7 @@
 import { Libre_Franklin } from 'next/font/google'
 import './styles.css'
 import './globals.css'
-import SignModal from "@/components/signModal"
+import SignModal from "@/components/modal/signModal"
 
 const libre_franklin = Libre_Franklin({
   subsets: ['latin'],
