@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useEffect, useState } from 'react'
+import React, { Suspense, useRef, useEffect, useState } from 'react'
 import { cn } from "@/lib/utils"
 import { useSearchParams } from "next/navigation"
 import { addGuest } from '@/app/action'
@@ -25,6 +25,7 @@ const SignModal = () => {
   const [state, formAction] = useFormState(addGuest, initialState)
 
   return (
+
     <AnimatePresence
       // Disable any initial animations on children that
       // are present when the component is first rendered
