@@ -3,7 +3,6 @@
 import React from 'react'
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
-import { useSearchParams } from "next/navigation"
 import Backdrop from './backdrop'
 
 interface Props {
@@ -56,8 +55,6 @@ const newspaper = {
 };
 
 const Modal = ({ children }: Props) => {
-  const searchParams = useSearchParams()
-  const modal = searchParams.get("modal")
 
   return (
     <Backdrop>
