@@ -7,10 +7,14 @@ import { redirect } from 'next/navigation'
 import { createGuest } from '@/db/queries'
 
 const schema = z.object({
-  name: z.string().max(40, {
+  name: z.string().min(1, {
+    message: 'Name is required',
+  }).max(40, {
     message: 'Name must be less than 40 characters',
   }),
-  comment: z.string().max(200, {
+  comment: z.string().min(1, {
+    message: 'Comment is required',
+  }).max(200, {
     message: 'Comment must be less than 200 characters',
   }),
 })

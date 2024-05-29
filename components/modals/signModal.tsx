@@ -2,29 +2,45 @@
 
 import React, { Suspense, useRef, useEffect, useState } from 'react'
 import { cn } from "@/lib/utils"
-import { useSearchParams } from "next/navigation"
+import { useSearchParams, useRouter } from "next/navigation"
 import { addGuest } from '@/app/action'
 import { useFormStatus, useFormState } from 'react-dom'
-import Backdrop from './backdrop'
 import Modal from './modal'
 import { motion, AnimatePresence } from "framer-motion"
+import { Button } from '@/components/ui/button'
 
 const SignModal = () => {
   const searchParams = useSearchParams()
   const modal = searchParams.get("modal")
   const [commentCharCount, setCommendCharCount] = useState(0)
-
+  const [name, setName] = useState('')
+  const [comment, setComment] = useState('')
+  const [errors, setErrors] = useState(null as any)
+  const router = useRouter()
+  
+  
+  const handleCancelClick = () => {
+    setErrors(null)
+    setCommendCharCount(0)
+    setName('')
+    setComment('')
+    router.push('/')
+  }
+  
   const handleCommentChange = (e: any) => {
     setCommendCharCount(e.target.value.length)
   }
-
+  
   const { pending } = useFormStatus()
   const initialState = {
     message: '',
   }
-
   const [state, formAction] = useFormState(addGuest, initialState)
 
+  useEffect(() => {
+    setErrors(state.errors)
+  }, [state])
+  
   return (
 
     <AnimatePresence
@@ -86,13 +102,39 @@ const SignModal = () => {
                   : `Keep going, you have ${200 - commentCharCount} characters left!`}
               </p>
             </div>
-            <p aria-live="polite" className="sr-only">
-              {state?.message}
-            </p>
+            {
+              errors && (
+                <div className={cn([
+                  'bg-red-100',
+                  'text-red-500',
+                  'p-4',
+                  'rounded-md',
+                  'mb-4'
+                ])}>
+                  <ul>
+                    {Object.values(errors).map((error: any) => (
+                      <li key={error}>
+                        {error}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
             <div className={cn([
               'flex',
               'justify-end'
             ])}>
+              <Button
+                type="button"
+                variant="ghost"
+                className={cn([
+                  'mr-2'
+                ])}
+                onClick={handleCancelClick}
+              >
+                Cancel
+              </Button>
               <input
                 type="submit"
                 value="Submit"

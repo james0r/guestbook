@@ -29,7 +29,7 @@ export default async function Page() {
               <thead className="bg-gray-200">
                 <tr>
                   <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Name</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Created at</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Date & Time</th>
                   <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Comment</th>
                 </tr>
               </thead>
