@@ -1,22 +1,23 @@
 "use client"
 
-import React from 'react'
-
-function formatLocalTime(timestamp: string): string {
-  const date = new Date(timestamp)
-  const localTime = date.toLocaleString()
-  return localTime
-}
+import React, { useEffect, useState } from 'react'
 
 interface Props {
   timestamp: string
 }
 
 const CreatedAtDate = ({ timestamp }: Props) => {
+  const [date, setDate] = useState('');
+
+  useEffect(() => {
+    const date = new Date(timestamp)
+    const localTime = date.toLocaleString()
+    setDate(localTime);
+  }, [timestamp]);
 
   return (
     <>
-      {formatLocalTime(timestamp)}
+      {date}
     </>
   )
 }
