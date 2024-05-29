@@ -2,6 +2,8 @@ import { desc, sql } from 'drizzle-orm';
 import { db } from './';
 import { guestsTable, InsertGuest } from './schema';
 
+export const dynamic = 'force-dynamic'
+
 export async function getGuestsDesc(): Promise<
   Array<{
     id: number;
