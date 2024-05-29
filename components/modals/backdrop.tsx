@@ -12,13 +12,13 @@ interface Props {
 const Backdrop = ({ children }: Props) => {
   const router = useRouter()
 
-  const handleClickOutside = (e: any) => {
+  const handleClick = (e: any) => {
     router.push('/')
   }
   
   return (
     <motion.div
-      onClick={handleClickOutside}
+      onClick={handleClick}
       className={cn([
         "fixed inset-0 bg-black bg-opacity-50 z-50",
         "flex items-center justify-center",

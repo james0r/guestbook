@@ -13,9 +13,14 @@ export default async function Page() {
     <div className="flex flex-col min-h-screen">
       <header className="flex justify-between items-center bg-gray-900 text-white py-4 px-6">
         <h1 className="text-2xl font-bold">James&apos; Guestbook</h1>
-        <Link href="?signModal=true" className="flex justify-end">
-          <Button variant="secondary">Sign Guestbook</Button>
-        </Link>
+        <div className="flex gap-2">
+          <Link href="?modal=sign" className="">
+            <Button className="hover:text-white/80">Sign in</Button>
+          </Link>
+          <Link href="?modal=sign">
+            <Button variant="secondary">Sign Guestbook</Button>
+          </Link>
+        </div>
       </header>
       <main className="flex-1 bg-gray-100 py-8 px-6">
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
