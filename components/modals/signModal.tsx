@@ -8,7 +8,7 @@ import { useFormStatus, useFormState } from 'react-dom'
 import Modal from './modal'
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from '@/components/ui/button'
-
+import { LoaderCircle } from 'lucide-react';
 
 const SignModal = () => {
   const searchParams = useSearchParams()
@@ -157,7 +157,10 @@ export function SubmitButton() {
       type="submit"
       disabled={pending}
       className={cn([
-        'block',
+        'flex',
+        'items-center',
+        'justify-center',
+        'min-w-[65px]',
         'bg-gray-900',
         'hover:bg-gray-950',
         'text-white',
@@ -165,11 +168,24 @@ export function SubmitButton() {
         'px-4',
         'rounded-md',
         'cursor-pointer',
-        'disabled:bg-gray-500',
         'disabled:cursor-not-allowed'
       ])}
     >
-      {pending ? 'Signing...' : 'Sign'}
+      {pending ? <LoadingSpinner /> : 'Sign'}
+      <span className="sr-only">
+        {pending ? 'Loading...' : ''}
+      </span>
     </button>
+  )
+}
+
+function LoadingSpinner() {
+  return (
+    <LoaderCircle 
+      size={20}
+      className={cn([
+        'animate-spin'
+      ])}
+    />
   )
 }
