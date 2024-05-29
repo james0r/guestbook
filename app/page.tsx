@@ -4,7 +4,7 @@ import FetchedData from '@/components/fetchedData'
 import CreatedAtDate from '@/components/createdAtDate'
 import { getGuestsDesc } from '@/db/queries'
 
-export const dynamic = 'force-dynamic'
+export const fetchCache = 'force-no-store';
 
 export default async function Page() {
   const guests = await getGuestsDesc()
