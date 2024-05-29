@@ -12,7 +12,7 @@ export async function getGuestsDesc(): Promise<
     comment: string;
   }>
 > {
-  return db.select().from(guestsTable).orderBy(desc(guestsTable.created_at));
+  return await db.select().from(guestsTable).orderBy(desc(guestsTable.created_at));
 }
 
 export async function createGuest(data: InsertGuest) {
