@@ -1,10 +1,10 @@
 "use server"
 
-import { db } from '@/db'
-import { guest } from '@/db/schema'
+import { z } from 'zod'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import { z } from 'zod'
+
+import { createGuest } from '@/db/queries'
 
 const schema = z.object({
   name: z.string().max(40, {
@@ -30,7 +30,7 @@ export async function addGuest(prevState: any, formData: FormData) {
   }
 
   try {
-    await db.insert(guest).values({
+    await createGuest({
       name: validatedFields.data.name,
       comment: validatedFields.data.comment,
     })
@@ -41,7 +41,7 @@ export async function addGuest(prevState: any, formData: FormData) {
       },
     }
   }
-  
+
   revalidatePath('/')
   redirect('/')
 

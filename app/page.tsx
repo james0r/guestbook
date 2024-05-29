@@ -1,15 +1,13 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import FetchedData from '@/components/fetchedData'
-import { db } from '@/db'
-import { guest } from '@/db/schema'
 import CreatedAtDate from '@/components/createdAtDate'
-import { desc } from 'drizzle-orm'
+import { getGuestsDesc } from '@/db/queries'
 
 export const dynamic = 'force-dynamic'
 
 export default async function Page() {
-  const guests = await db.select().from(guest).orderBy(desc(guest.created_at));
+  const guests = await getGuestsDesc()
 
   return (
     <div className="flex flex-col min-h-screen">
