@@ -1,14 +1,16 @@
 "use client"
 
 import React, { Suspense, useRef, useEffect, useState } from 'react'
-import { cn } from "@/lib/utils"
 import { useSearchParams, useRouter } from "next/navigation"
-import { addGuest } from '@/app/action'
 import { useFormStatus, useFormState } from 'react-dom'
-import Modal from './modal'
 import { motion, AnimatePresence } from "framer-motion"
+import { LoaderCircle } from 'lucide-react'
+
+import { cn } from "@/lib/utils"
+import { addGuest } from '@/app/action'
+import Modal from './modal'
 import { Button } from '@/components/ui/button'
-import { LoaderCircle } from 'lucide-react';
+import AITextarea from '@/components/aitextarea'
 
 const SignModal = () => {
   const searchParams = useSearchParams()
@@ -70,6 +72,7 @@ const SignModal = () => {
             <input
               type="text"
               name="name"
+              autoFocus
               placeholder="Name"
               className={cn([
                 'py-2',
@@ -83,11 +86,10 @@ const SignModal = () => {
             <div className={cn([
               'mb-4'
             ])}>
-              <textarea
+              <AITextarea
                 name="comment"
-                rows={4}
-                placeholder="Comment"
                 onChange={handleCommentChange}
+                placeholder="Comment"
                 className={cn([
                   'py-2',
                   'px-4',
@@ -95,7 +97,9 @@ const SignModal = () => {
                   'border-2',
                   'border-black/25',
                   'rounded-md'
-                ])} />
+                ])}
+                rows={4}
+              />
               <p className={cn([
                 'text-xs',
                 commentCharCount > 200 ? 'text-red-500' : 'text-gray-500'
@@ -181,7 +185,7 @@ export function SubmitButton() {
 
 function LoadingSpinner() {
   return (
-    <LoaderCircle 
+    <LoaderCircle
       size={20}
       className={cn([
         'animate-spin'
