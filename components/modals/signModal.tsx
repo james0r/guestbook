@@ -9,6 +9,7 @@ import Modal from './modal'
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from '@/components/ui/button'
 
+
 const SignModal = () => {
   const searchParams = useSearchParams()
   const modal = searchParams.get("modal")
@@ -17,30 +18,32 @@ const SignModal = () => {
   const [comment, setComment] = useState('')
   const [errors, setErrors] = useState(null as any)
   const router = useRouter()
-  
-  
+
+
   const handleCancelClick = () => {
     setErrors(null)
     setCommendCharCount(0)
-    setName('')
-    setComment('')
+    // setName('')
+    // setComment('')
     router.push('/')
   }
-  
+
   const handleCommentChange = (e: any) => {
+    // setComment(e.target.value)
     setCommendCharCount(e.target.value.length)
   }
-  
-  const { pending } = useFormStatus()
+
   const initialState = {
     message: '',
   }
   const [state, formAction] = useFormState(addGuest, initialState)
 
   useEffect(() => {
-    setErrors(state.errors)
+    if (state?.errors) {
+      setErrors(state.errors)
+    }
   }, [state])
-  
+
   return (
 
     <AnimatePresence
@@ -135,23 +138,7 @@ const SignModal = () => {
               >
                 Cancel
               </Button>
-              <input
-                type="submit"
-                value="Submit"
-                disabled={pending}
-                className={cn([
-                  'block',
-                  'bg-gray-900',
-                  'hover:bg-gray-950',
-                  'text-white',
-                  'py-2',
-                  'px-4',
-                  'rounded-md',
-                  'cursor-pointer',
-                  'disabled:bg-gray-500',
-                  'disabled:cursor-not-allowed'
-                ])}
-              />
+              <SubmitButton />
             </div>
           </form>
         </Modal>
@@ -161,3 +148,28 @@ const SignModal = () => {
 }
 
 export default SignModal
+
+export function SubmitButton() {
+  const { pending } = useFormStatus()
+
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className={cn([
+        'block',
+        'bg-gray-900',
+        'hover:bg-gray-950',
+        'text-white',
+        'py-2',
+        'px-4',
+        'rounded-md',
+        'cursor-pointer',
+        'disabled:bg-gray-500',
+        'disabled:cursor-not-allowed'
+      ])}
+    >
+      {pending ? 'Signing...' : 'Sign'}
+    </button>
+  )
+}

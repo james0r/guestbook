@@ -19,8 +19,10 @@ const schema = z.object({
   }),
 })
 
-export async function addGuest(prevState: any, formData: FormData) {
+export async function addGuest(prevData: FormData ,formData: FormData) {
   'use server'
+
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   const validatedFields = schema.safeParse({
     name: formData.get('name'),
@@ -33,13 +35,15 @@ export async function addGuest(prevState: any, formData: FormData) {
     }
   }
 
+  let result: any
+
   try {
-    await createGuest({
+    result = await createGuest({
       name: validatedFields.data.name,
       comment: validatedFields.data.comment,
     })
   } catch (error) {
-    return {
+    result = {
       errors: {
         general: 'An error occurred while processing your request. Please try again.',
       },
@@ -49,8 +53,9 @@ export async function addGuest(prevState: any, formData: FormData) {
   revalidatePath('/')
   redirect('/')
 
-  return {
-    message: "Form data processed"
-  }
-
+  return result
+  
+  // return {
+  //   message: "Form data processed"
+  // }
 }

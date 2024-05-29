@@ -34,7 +34,7 @@ const FetchedData = async () => {
 
   
   return (
-    <div className="py-2 text-xs">
+    <div className="py-2 text-xs sm:text-sm">
       {cleanData}
     </div>
   )
