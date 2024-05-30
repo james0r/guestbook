@@ -1,7 +1,7 @@
 "use client"
 
 import React, { Suspense, useRef, useEffect, useState } from 'react'
-import { useSearchParams, useRouter } from "next/navigation"
+import { useSearchParams, useRouter, redirect } from "next/navigation"
 import { useFormStatus, useFormState } from 'react-dom'
 import { motion, AnimatePresence } from "framer-motion"
 import { LoaderCircle } from 'lucide-react'
@@ -15,16 +15,15 @@ import AITextarea from '@/components/aitextarea'
 const SignModal = () => {
   const searchParams = useSearchParams()
   const modal = searchParams.get("modal")
-  const [commentCharCount, setCommendCharCount] = useState(0)
+  const [commentCharCount, setCommentCharCount] = useState(0)
   const [name, setName] = useState('')
   const [comment, setComment] = useState('')
   const [errors, setErrors] = useState(null as any)
   const router = useRouter()
 
-
   const handleCancelClick = () => {
     setErrors(null)
-    setCommendCharCount(0)
+    setCommentCharCount(0)
     // setName('')
     // setComment('')
     router.push('/')
@@ -32,18 +31,25 @@ const SignModal = () => {
 
   const handleCommentChange = (e: any) => {
     // setComment(e.target.value)
-    setCommendCharCount(e.target.value.length)
+    setCommentCharCount(e.target.value.length)
   }
 
   const initialState = {
-    message: '',
+    success: null,
+    errors: null
   }
   const [state, formAction] = useFormState(addGuest, initialState)
 
   useEffect(() => {
     if (state?.errors) {
       setErrors(state.errors)
+    } 
+    
+    if (state?.success) {
+      setErrors(null)
+      router.push('/')
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state])
 
   return (
@@ -81,7 +87,11 @@ const SignModal = () => {
                 'mb-4',
                 'border-2',
                 'border-black/25',
-                'rounded-md'
+                'rounded-md',
+                'focus-within:outline-none',
+                'focus-within:ring-2',
+                'ring-gray-900',
+                'ring-offset-2'
               ])} />
             <div className={cn([
               'mb-4'
@@ -96,12 +106,17 @@ const SignModal = () => {
                   'w-full',
                   'border-2',
                   'border-black/25',
-                  'rounded-md'
+                  'rounded-md',
+                  'focus-within:outline-none',
+                  'focus-within:ring-2',
+                  'ring-gray-900',
+                  'ring-offset-2'
                 ])}
                 rows={4}
               />
               <p className={cn([
-                'text-xs',
+                'text-sm',
+                'mt-1',
                 commentCharCount > 200 ? 'text-red-500' : 'text-gray-500'
               ])}>
                 {commentCharCount > 200
@@ -114,7 +129,9 @@ const SignModal = () => {
                 <div className={cn([
                   'bg-red-100',
                   'text-red-500',
-                  'p-4',
+                  'text-sm',
+                  'px-4',
+                  'py-3',
                   'rounded-md',
                   'mb-4'
                 ])}>
@@ -130,7 +147,8 @@ const SignModal = () => {
             }
             <div className={cn([
               'flex',
-              'justify-end'
+              'justify-end',
+              'mt-8',
             ])}>
               <Button
                 type="button"
