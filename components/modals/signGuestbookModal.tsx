@@ -5,6 +5,7 @@ import { useSearchParams, useRouter, redirect } from "next/navigation"
 import { useFormStatus, useFormState } from 'react-dom'
 import { motion, AnimatePresence } from "framer-motion"
 import { LoaderCircle } from 'lucide-react'
+import { useSession } from "next-auth/react"
 
 import { cn } from "@/lib/utils"
 import { addGuest } from '@/app/action'
@@ -13,6 +14,7 @@ import { Button } from '@/components/ui/button'
 import AITextarea from '@/components/aitextarea'
 
 const SignModal = () => {
+  const { data: session, status } = useSession()
   const searchParams = useSearchParams()
   const modal = searchParams.get("modal")
   const [commentCharCount, setCommentCharCount] = useState(0)
@@ -43,14 +45,34 @@ const SignModal = () => {
   useEffect(() => {
     if (state?.errors) {
       setErrors(state.errors)
-    } 
-    
+    }
+
     if (state?.success) {
       setErrors(null)
       router.push('/')
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state])
+
+  if (!session?.user) return (
+    <AnimatePresence
+      // Disable any initial animations on children that
+      // are present when the component is first rendered
+      initial={false}
+      // Only render one component at a time.
+      // The exiting component will finish its exit
+      // animation before entering component is rendered
+      mode="wait"
+      // Fires when all exiting nodes have completed animating out
+      onExitComplete={() => null}
+    >
+      {modal === 'sign' && (
+        <Modal>
+          Not Authorized
+        </Modal>
+      )}
+    </AnimatePresence>
+  )
 
   return (
 

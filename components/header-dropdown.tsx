@@ -2,7 +2,7 @@
 
 import React from 'react'
 import UserAvatar from '@/components/auth/user-avatar'
-import { SignOut } from '@/components/auth/sign-out'
+import { signOut } from "next-auth/react"
 import { cn } from '@/lib/utils'
 import { useSession } from "next-auth/react"
 
@@ -35,7 +35,7 @@ const HeaderDropdown = () => {
             >
               <ul className="flex flex-col gap-2">
                 <li>
-                  <SignOut />
+                  <button onClick={() => signOut()}>Sign out</button>
                 </li>
               </ul>
             </PopoverContent>

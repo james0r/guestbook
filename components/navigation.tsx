@@ -7,6 +7,7 @@ import { SquarePen, LogIn } from 'lucide-react'
 import { signIn } from "next-auth/react"
 import HeaderDropdown from '@/components/header-dropdown'
 import { useSession } from "next-auth/react"
+import Header from './layout/header'
 
 const Navigation = () => {
   const { data: session, status } = useSession()
@@ -33,10 +34,10 @@ const Navigation = () => {
                 <span className="hidden sm:block">Sign guestbook</span>
               </Button>
             </Link>
-            <HeaderDropdown />
           </>
         )
       }
+      <HeaderDropdown />
     </div>
   )
 }
