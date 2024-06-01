@@ -1,9 +1,9 @@
 "use client"
 
-import React, { Suspense, useRef, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSearchParams, useRouter, redirect } from "next/navigation"
 import { useFormStatus, useFormState } from 'react-dom'
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 import { LoaderCircle } from 'lucide-react'
 import { useSession } from "next-auth/react"
 
