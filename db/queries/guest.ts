@@ -1,6 +1,6 @@
 import { desc, sql } from 'drizzle-orm';
-import { db } from './';
-import { guestsTable, InsertGuest } from './schema';
+import { db } from '..';
+import { guestsTable, InsertGuest } from '../schema';
 
 export async function getGuestsDesc(): Promise<
   Array<{

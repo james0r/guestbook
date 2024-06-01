@@ -2,12 +2,12 @@
 
 import React from 'react'
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/Button"
 import { SquarePen, LogIn } from 'lucide-react'
 import { signIn } from "next-auth/react"
-import HeaderDropdown from '@/components/header-dropdown'
+import HeaderDropdown from '@/components/HeaderDropdown'
 import { useSession } from "next-auth/react"
-import Header from './layout/header'
+import Header from './layout/Header'
 
 const Navigation = () => {
   const { data: session, status } = useSession()

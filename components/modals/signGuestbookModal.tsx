@@ -8,10 +8,10 @@ import { LoaderCircle } from 'lucide-react'
 import { useSession } from "next-auth/react"
 
 import { cn } from "@/lib/utils"
-import { addGuest } from '@/app/action'
-import Modal from './modal'
-import { Button } from '@/components/ui/button'
-import AITextarea from '@/components/aitextarea'
+import { addGuest } from '@/app/actions/guestActions'
+import Modal from './Modal'
+import { Button } from '@/components/ui/Button'
+import AITextarea from '@/components/AITextArea'
 
 const SignModal = () => {
   const { data: session, status } = useSession()

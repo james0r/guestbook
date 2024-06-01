@@ -1,8 +1,8 @@
-import FetchedData from '@/components/fetchedData'
-import CreatedAtDate from '@/components/createdAtDate'
-import { getGuestsDesc } from '@/db/queries'
+import FetchedData from '@/components/FetchedData'
+import CreatedAtDate from '@/components/CreatedAtDate'
+import { getGuestsDesc } from '@/db/queries/guest'
 
-import Header from '@/components/layout/header'
+import Header from '@/components/layout/Header'
 
 export const fetchCache = 'force-no-store'
 

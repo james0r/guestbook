@@ -3,7 +3,7 @@
 import React from 'react'
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
-import Backdrop from './backdrop'
+import Backdrop from './Backdrop'
 
 interface Props {
   children: React.ReactNode

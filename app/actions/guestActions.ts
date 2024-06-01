@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
-import { createGuest } from '@/db/queries'
+import { createGuest } from '@/db/queries/guest'
 
 const schema = z.object({
   name: z.string().min(1, {

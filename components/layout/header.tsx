@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import Navigation from '@/components/navigation'
+import Navigation from '@/components/Navigation'
 import { SessionProvider } from "next-auth/react";
 
 export default async function Header() {
