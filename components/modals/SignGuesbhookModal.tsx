@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils"
 import { addGuest } from '@/app/actions/guestActions'
 import Modal from './Modal'
 import { Button } from '@/components/ui/Button'
-import AITextarea from '@/components/AITextArea'
+import AITextarea from '@/components/AITextarea'
 
 const SignModal = () => {
   const { data: session, status } = useSession()
