@@ -6,9 +6,10 @@ import { useFormStatus, useFormState } from 'react-dom'
 import { AnimatePresence } from "framer-motion"
 import { LoaderCircle } from 'lucide-react'
 import { useSession } from "next-auth/react"
+import { SubmitButton } from '@/components/SubmitButton'
 
 import { cn } from "@/lib/utils"
-import { addGuest } from '@/app/actions/guestActions'
+import { addGuest } from '@/actions/guestActions'
 import Modal from './Modal'
 import { Button } from '@/components/ui/Button'
 import AITextarea from '@/components/AITextarea'
@@ -182,7 +183,7 @@ const SignModal = () => {
               >
                 Cancel
               </Button>
-              <SubmitButton />
+              <SubmitButton text="Sign" />
             </div>
           </form>
         </Modal>
@@ -193,43 +194,5 @@ const SignModal = () => {
 
 export default SignModal
 
-export function SubmitButton() {
-  const { pending } = useFormStatus()
 
-  return (
-    <button
-      type="submit"
-      disabled={pending}
-      className={cn([
-        'flex',
-        'items-center',
-        'justify-center',
-        'min-w-[65px]',
-        'bg-gray-900',
-        'hover:bg-gray-950',
-        'text-white',
-        'py-2',
-        'px-4',
-        'rounded-md',
-        'cursor-pointer',
-        'disabled:cursor-not-allowed'
-      ])}
-    >
-      {pending ? <LoadingSpinner /> : 'Sign'}
-      <span className="sr-only">
-        {pending ? 'Loading...' : ''}
-      </span>
-    </button>
-  )
-}
 
-function LoadingSpinner() {
-  return (
-    <LoaderCircle
-      size={20}
-      className={cn([
-        'animate-spin'
-      ])}
-    />
-  )
-}

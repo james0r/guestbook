@@ -1,13 +1,13 @@
-import { sql } from 'drizzle-orm';
-import { integer, sqliteTable, text, primaryKey } from 'drizzle-orm/sqlite-core';
+import { sql, relations } from 'drizzle-orm'
+import { integer, sqliteTable, text, primaryKey } from 'drizzle-orm/sqlite-core'
 import type { AdapterAccountType } from "next-auth/adapters"
 
-export const guestsTable = sqliteTable('guests', {
+export const guestbookEntries = sqliteTable('guestbookEntries', {
   id: integer('id').primaryKey(),
   name: text('name').notNull(),
   created_at: text('created_at').default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`).notNull(),
   comment: text('comment').notNull(),
-});
+})
 
 export const users = sqliteTable("user", {
   id: text("id")
@@ -15,10 +15,12 @@ export const users = sqliteTable("user", {
     .$defaultFn(() => crypto.randomUUID()),
   name: text("name"),
   email: text("email").notNull(),
+  username: text('username'),
+  password: text('password'),
   emailVerified: integer("emailVerified", { mode: "timestamp_ms" }),
   image: text("image"),
 })
- 
+
 export const accounts = sqliteTable(
   "account",
   {
@@ -42,7 +44,18 @@ export const accounts = sqliteTable(
     }),
   })
 )
- 
+
+// Each account belongs to one user
+export const accountsRelations = relations(accounts, ({ one }) => ({
+  user: one(users, { fields: [accounts.userId], references: [users.id] }),
+}))
+
+// Each user has many accounts
+export const usersRelations = relations(users, ({ many }) => ({
+  accounts: many(accounts),
+}))
+
+
 export const sessions = sqliteTable("session", {
   sessionToken: text("sessionToken").primaryKey(),
   userId: text("userId")
@@ -50,7 +63,7 @@ export const sessions = sqliteTable("session", {
     .references(() => users.id, { onDelete: "cascade" }),
   expires: integer("expires", { mode: "timestamp_ms" }).notNull(),
 })
- 
+
 export const verificationTokens = sqliteTable(
   "verificationToken",
   {
@@ -64,7 +77,7 @@ export const verificationTokens = sqliteTable(
     }),
   })
 )
- 
+
 export const authenticators = sqliteTable(
   "authenticator",
   {
@@ -88,5 +101,20 @@ export const authenticators = sqliteTable(
   })
 )
 
-export type InsertGuest = typeof guestsTable.$inferInsert;
-export type SelectGuests = typeof guestsTable.$inferSelect;
+export type InsertGuest = typeof guestbookEntries.$inferInsert
+export type SelectGuests = typeof guestbookEntries.$inferSelect
+
+export type InsertUser = typeof users.$inferInsert
+export type SelectUser = typeof users.$inferSelect
+
+export type InsertAccount = typeof accounts.$inferInsert
+export type SelectAccount = typeof accounts.$inferSelect
+
+export type InsertSession = typeof sessions.$inferInsert
+export type SelectSession = typeof sessions.$inferSelect
+
+export type InsertVerificationToken = typeof verificationTokens.$inferInsert
+export type SelectVerificationToken = typeof verificationTokens.$inferSelect
+
+export type InsertAuthenticator = typeof authenticators.$inferInsert
+export type SelectAuthenticator = typeof authenticators.$inferSelect

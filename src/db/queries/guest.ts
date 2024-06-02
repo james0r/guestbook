@@ -1,6 +1,6 @@
 import { desc, sql } from 'drizzle-orm';
 import { db } from '..';
-import { guestsTable, InsertGuest } from '../schema';
+import { guestbookEntries, InsertGuest } from '../schema';
 
 export async function getGuestsDesc(): Promise<
   Array<{
@@ -10,9 +10,9 @@ export async function getGuestsDesc(): Promise<
     comment: string;
   }>
 > {
-  return db.select().from(guestsTable).orderBy(desc(guestsTable.created_at));
+  return db.select().from(guestbookEntries).orderBy(desc(guestbookEntries.created_at));
 }
 
 export async function createGuest(data: InsertGuest) {
-  await db.insert(guestsTable).values(data);
+  await db.insert(guestbookEntries).values(data);
 }

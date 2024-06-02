@@ -22,6 +22,13 @@
       "when": 1717157025036,
       "tag": "0002_lazy_namorita",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1717215176925,
+      "tag": "0003_pink_bullseye",
+      "breakpoints": true
     }
   ]
 }
