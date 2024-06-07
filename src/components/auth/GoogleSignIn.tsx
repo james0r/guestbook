@@ -9,7 +9,7 @@ export default function GoogleSignIn() {
       action={async () => {
         'use server'
         await signIn('google', {
-          redirectTo: '/profile',
+          redirectTo: '/dashboard/profile',
           redirect: true,
           callbackUrl: '/',
         })

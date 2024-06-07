@@ -1,15 +1,15 @@
-"use client"
-
-import React from 'react'
-import { useState, useEffect } from 'react'
+'use client'
+// import { useActionState } from 'react';
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { onBoarding } from '@/actions/authActions'
 import { useFormState } from 'react-dom'
+import { SubmitButton } from '@/components/SubmitButton'
+import { useEffect } from 'react'
 import toast from 'react-hot-toast'
-import { resetPassword } from '@/actions/authActions'
 import { Label } from '@/components/ui/Label'
 import { Input } from '@/components/ui/Input'
 import { Eye, EyeOff } from 'lucide-react'
-import { SubmitButton } from '@/components/SubmitButton'
 
 const initialState = {
   type: '',
@@ -17,19 +17,18 @@ const initialState = {
   errors: null,
 }
 
-const ResetPasswordForm = ({ email }: { email: string }) => {
+export default function OnBoardingForm({ email }: { email: string }) {
+  // const [state, submitAction, isPending] = useActionState(onBoarding, initialState);
 
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  const resetPasswordWithEmail = resetPassword.bind(null, email as string)
+  const onBoardingWithEmail = onBoarding.bind(null, email as string)
 
-  const [state, submitAction] = useFormState(
-    resetPasswordWithEmail,
-    initialState,
-  )
+  const [state, submitAction] = useFormState(onBoardingWithEmail, initialState)
 
   const router = useRouter()
+  
   useEffect(() => {
     if (state.type === 'success') {
       toast.success(state.message)
@@ -44,6 +43,46 @@ const ResetPasswordForm = ({ email }: { email: string }) => {
         <div className='rounded-md border-2 border-red-400 px-2 py-4 text-center'>
           <p className='text-red-500'>{state.message}</p>
         </div>
+      )}
+      <div className='grid gap-2'>
+        <Label htmlFor='name'>Name</Label>
+        <Input
+          id='name'
+          name='name'
+          placeholder='John Doe'
+          required
+          type='text'
+        />
+        {state.errors?.name && (
+          <p className='text-sm text-red-500'>{state.errors.name}</p>
+        )}
+      </div>
+      <div className='grid gap-2'>
+        <Label htmlFor='username'>Username</Label>
+        <Input
+          id='username'
+          name='username'
+          placeholder='Username'
+          required
+          type='text'
+        />
+        {state.errors?.username && (
+          <p className='text-sm text-red-500'>{state.errors.username}</p>
+        )}
+      </div>
+      <div className='grid gap-2'>
+        <Label htmlFor='email'>Email</Label>
+        <Input
+          id='email'
+          name='email'
+          defaultValue={email}
+          disabled
+          required
+          type='email'
+        />
+      </div>
+      {state.errors?.email && (
+        <p className='text-red-500'>{state.errors.email}</p>
       )}
       <div className='grid gap-2'>
         <Label htmlFor='password'>Password</Label>
@@ -97,9 +136,7 @@ const ResetPasswordForm = ({ email }: { email: string }) => {
           <p className='text-red-500'>{state.errors.password2}</p>
         )}
       </div>
-      <SubmitButton text='Save Password' />
+      <SubmitButton text="Sign Up" />
     </form>
   )
 }
-
-export default ResetPasswordForm

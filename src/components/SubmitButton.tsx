@@ -1,15 +1,19 @@
+"use client"
+
 import { LoaderCircle } from 'lucide-react'
 import { useFormStatus } from 'react-dom'
 import { cn } from "@/lib/utils"
 import { Button, type ButtonProps } from '@/components/ui/Button'
 
+interface SubmitButtonProps extends ButtonProps {
+  text: string
+  className?: string
+}
+
 export function SubmitButton({
   text,
   className
-}: {
-  text: string,
-  className?: string
-}, props: ButtonProps) {
+}: SubmitButtonProps, props: ButtonProps) {
   const { pending } = useFormStatus()
 
   return (

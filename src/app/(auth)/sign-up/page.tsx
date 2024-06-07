@@ -2,6 +2,7 @@ import React from 'react'
 import GenericAuthLayout from '@/components/auth/GenericAuthLayout'
 import GoogleSignIn from '@/components/auth/GoogleSignIn'
 import Link from 'next/link';
+import SignUpForm from './SignUpForm'
 
 const SignUp = () => {
   return (
@@ -9,7 +10,7 @@ const SignUp = () => {
       title="Sign Up"
       description="Enter your email below to create your account."
     >
-      SignUpForm
+      <SignUpForm />
       <div className="px-2 text-center">Or continue with</div>
       <div className="flex items-center justify-center space-x-4">
         <GoogleSignIn />

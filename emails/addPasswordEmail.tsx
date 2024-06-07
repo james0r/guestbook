@@ -52,7 +52,7 @@ export const AddPasswordEmail = ({
             </Text>
             <Text style={text}>
               If you didn&apos;t request this, and have account on with us, you
-              can contact us at admin@patelvivek.dev.
+              can contact us at admin@guestook.jamesauble.com.
             </Text>
             <Text style={text}>
               To keep your account secure, please don&apos;t forward this email

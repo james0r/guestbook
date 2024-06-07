@@ -2,7 +2,7 @@ import FetchedData from '@/components/FetchedData'
 import CreatedAtDate from '@/components/CreatedAtDate'
 import { getGuestsDesc } from '@/db/queries/guest'
 
-import Header from '@/components/layout/Header'
+import Header from '@/components/layout/header/Header'
 
 export const fetchCache = 'force-no-store'
 

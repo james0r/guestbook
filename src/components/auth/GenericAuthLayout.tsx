@@ -14,7 +14,7 @@ const GenericAuthLayout = ({
 }: GenericAuthLayoutProps) => {
   return (
     <div className='mx-auto flex min-h-screen flex-col items-center justify-center'>
-      <div className='m-4 mx-auto w-80 flex flex-col gap-2 rounded-lg p-8 shadow-lg shadow-black dark:shadow-white'>
+      <div className='m-4 mx-auto w-80 sm:w-96 flex flex-col gap-2 rounded-lg p-8 shadow-lg shadow-black dark:shadow-white'>
         <div className='text-center'>
           {
             title && (
@@ -28,7 +28,6 @@ const GenericAuthLayout = ({
             <p className='text-sm text-gray-500 dark:text-gray-400'>
               {description}
             </p>
-
           }
         </div>
         {children}

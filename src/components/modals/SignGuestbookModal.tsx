@@ -5,7 +5,7 @@ import { useSearchParams, useRouter, redirect } from "next/navigation"
 import { useFormStatus, useFormState } from 'react-dom'
 import { AnimatePresence } from "framer-motion"
 import { LoaderCircle } from 'lucide-react'
-import { useSession } from "next-auth/react"
+// import { useSession } from "next-auth/react"
 import { SubmitButton } from '@/components/SubmitButton'
 
 import { cn } from "@/lib/utils"
@@ -14,8 +14,8 @@ import Modal from './Modal'
 import { Button } from '@/components/ui/Button'
 import AITextarea from '@/components/AITextarea'
 
-const SignModal = () => {
-  const { data: session, status } = useSession()
+const SignModal = ({ session }: any) => {
+  // const { data: session, status } = useSession()
   const searchParams = useSearchParams()
   const modal = searchParams.get("modal")
   const [commentCharCount, setCommentCharCount] = useState(0)

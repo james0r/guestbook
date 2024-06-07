@@ -3,9 +3,7 @@ import './styles.css'
 import './globals.css'
 import SignGuestbookModal from "@/components/modals/SignGuestbookModal"
 import { Suspense } from 'react'
-import { SessionProvider } from "next-auth/react";
-import SessionConsumer from '@/components/SessionConsumer'
-// import { getSession } from 'next-auth/react'
+import { auth } from '@/auth'
 
 const libre_franklin = Libre_Franklin({
   subsets: ['latin'],
@@ -13,17 +11,17 @@ const libre_franklin = Libre_Franklin({
   variable: '--font-libre_franklin',
 })
 
-export default function Layout({ children }: any) {
+export default async function Layout({ children }: any) {
   // const session = getSession()
+
+  const session = await auth()
 
   return (
     <html lang="en">
       <body className={libre_franklin.variable}>
         {children}
         <Suspense>
-          <SessionProvider>
-            <SignGuestbookModal />
-          </SessionProvider>
+          <SignGuestbookModal session={session} />
         </Suspense>
         {/* <SessionConsumer session={session} /> */}
       </body>

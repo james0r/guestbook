@@ -21,7 +21,7 @@ export function TokenNotFound({
         <p className='text-sm text-gray-500 dark:text-gray-400'>
           {description}
         </p>
-        <Link href={url}>
+        <Link href={url} className="mt-6">
           <Button>{buttonText}</Button>
         </Link>
       </div>

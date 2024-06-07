@@ -10,7 +10,7 @@ export async function sendVerificationEmail(
 ) {
   try {
     await resend.emails.send({
-      from: 'no-reply@patelvivek.dev',
+      from: 'no-reply@guestbook.jamesauble.com',
       to: email,
       subject: 'Verification Code for creating a new Account',
       react: VerificationEmail({ email, validationCode: validationCode, time }),
@@ -30,7 +30,7 @@ export async function sendForgotPasswordEmail(
 ) {
   try {
     await resend.emails.send({
-      from: 'no-reply@patelvivek.dev',
+      from: 'no-reply@guestbook.jamesauble.com',
       to: email,
       subject: 'Password Reset Request',
       react: ForgotPasswordEmail({
@@ -57,7 +57,7 @@ export async function sendAddPasswordEmail(
 ) {
   try {
     await resend.emails.send({
-      from: 'no-reply@patelvivek.dev',
+      from: 'no-reply@guestbook.jamesauble.com',
       to: email,
       subject: 'Request for adding password',
       react: AddPasswordEmail({

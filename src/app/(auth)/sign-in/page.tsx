@@ -2,7 +2,7 @@ import React from 'react'
 import GenericAuthLayout from '@/components/auth/GenericAuthLayout'
 import GoogleSignIn from '@/components/auth/GoogleSignIn'
 import Link from 'next/link'
-import SignInForm from './SignInForm';
+import SignInForm from './SignInForm'
 
 function SignIn() {
   return (

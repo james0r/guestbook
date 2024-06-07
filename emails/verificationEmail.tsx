@@ -31,7 +31,7 @@ export const VerificationEmail = ({
 }: VerificationEmailProps) => (
   <Html>
     <Head />
-    <Preview>Your login code for Drizzle + Turso Auth</Preview>
+    <Preview>Your login code for James&apos; Guestbook</Preview>
     <Body style={main}>
       <Container style={container}>
         <Row>

@@ -4,24 +4,28 @@ import React from 'react'
 import UserAvatar from '@/components/UserAvatar'
 import { signOut } from "next-auth/react"
 import { cn } from '@/lib/utils'
-import { useSession } from "next-auth/react"
+// import { useSession } from "next-auth/react"
 
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/Popover"
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar'
+import Link from 'next/link'
 
-const HeaderDropdown = () => {
-  const { data: session, status } = useSession()
+const HeaderDropdown = ({ user }: any) => {
 
   return (
     <>
       {
-        status === 'authenticated' && (
+        user && (
           <Popover>
             <PopoverTrigger>
-              <UserAvatar session={session} />
+              <Avatar className="text-black">
+                <AvatarImage src={user?.image!} alt={user?.name!} />
+                <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>
+              </Avatar>
             </PopoverTrigger>
             <PopoverContent
               sideOffset={8}
@@ -31,7 +35,12 @@ const HeaderDropdown = () => {
                 'bg-white'
               ])}
             >
-              <ul className="flex flex-col gap-2">
+              <ul className="flex flex-col gap-2 space-y-2">
+                <li>
+                  <Link href="/dashboard">
+                    Dashboard
+                  </Link>
+                </li>
                 <li>
                   <button onClick={() => signOut()}>Sign out</button>
                 </li>

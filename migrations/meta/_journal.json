@@ -29,6 +29,13 @@
       "when": 1717215176925,
       "tag": "0003_pink_bullseye",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1717317430679,
+      "tag": "0004_lowly_the_anarchist",
+      "breakpoints": true
     }
   ]
 }
