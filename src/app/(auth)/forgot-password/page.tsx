@@ -5,10 +5,15 @@ import { forgotPassword } from '@/actions/authActions'
 import { useFormState } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import GenericAuthLayout from '@/components/auth/GenericAuthLayout'
-import toast from 'react-hot-toast';
-import { Input } from '@/components/ui/Input';
-import { Label } from '@/components/ui/Label';
-import { SubmitButton } from '@/components/SubmitButton';
+import toast from 'react-hot-toast'
+import { Input } from '@/components/ui/Input'
+import { Label } from '@/components/ui/Label'
+import { SubmitButton } from '@/components/SubmitButton'
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: 'Forgot Password',
+}
 
 const initialState = {
   type: '',

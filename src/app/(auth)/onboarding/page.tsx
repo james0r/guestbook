@@ -2,6 +2,12 @@ import { getVerificationToken } from '@/db/queries/token'
 import OnBoardingForm from './OnBoardingForm'
 import { TokenNotFound } from '@/components/TokenNotFound'
 import GenericAuthLayout from '@/components/auth/GenericAuthLayout'
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Onboarding',
+}
+
 
 export default async function OnBoarding({
   searchParams,

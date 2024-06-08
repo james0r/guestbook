@@ -3,6 +3,12 @@ import GenericAuthLayout from '@/components/auth/GenericAuthLayout'
 import GoogleSignIn from '@/components/auth/GoogleSignIn'
 import Link from 'next/link';
 import SignUpForm from './SignUpForm'
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Sign Up',
+}
+
 
 const SignUp = () => {
   return (

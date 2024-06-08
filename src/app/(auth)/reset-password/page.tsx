@@ -2,7 +2,13 @@ import React from 'react'
 import AuthCard from '@/components/auth/GenericAuthLayout'
 import ResetPasswordForm from './ResetPasswordForm'
 import { TokenNotFound } from '@/components/TokenNotFound'
-import { getVerificationToken } from '@/db/queries/token';
+import { getVerificationToken } from '@/db/queries/token'
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Reset Password',
+}
+
 
 const ResetPassword = async ({
   searchParams,
@@ -10,10 +16,10 @@ const ResetPassword = async ({
   searchParams?: {
     token?: string
   }
-} ) => {
+}) => {
 
-  const token = searchParams?.token || '';
-  
+  const token = searchParams?.token || ''
+
   if (token === '') {
     return (
       <TokenNotFound
@@ -22,10 +28,10 @@ const ResetPassword = async ({
         url='/'
         buttonText='Back to home'
       />
-    );
+    )
   }
 
-  const data = await getVerificationToken(token);
+  const data = await getVerificationToken(token)
 
   // check expires of token
   if (data.data?.expires! < new Date()) {
@@ -36,7 +42,7 @@ const ResetPassword = async ({
         url='/sign-up'
         buttonText='Try again'
       />
-    );
+    )
   }
 
   if (!data.success) {
@@ -47,7 +53,7 @@ const ResetPassword = async ({
         url='/sign-up'
         buttonText='Sign Up'
       />
-    );
+    )
   }
 
   return (

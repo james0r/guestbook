@@ -1,5 +1,10 @@
 import Link from 'next/link'
 import DashboardLayout from './_components/DashboardLayout'
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+}
 
 export default function Dashboard() {
   return (

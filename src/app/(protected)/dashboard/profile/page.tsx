@@ -20,12 +20,16 @@ import AddPasswordButton from './_components/AddPasswordButton'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar'
 import { Edit } from 'lucide-react'
 import DashboardLayout from '../_components/DashboardLayout'
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Profile',
+}
+
 
 export default async function Profile() {
   const session = await auth()
   const user = session?.user
-
-  console.log('user', user)
 
   if (!user) {
     redirect('/sign-in')
