@@ -20,7 +20,7 @@ interface VerificationEmailProps {
   time: number;
 }
 
-const baseUrl = process.env.BASE_URL
+const baseUrl = process.env.BASE_URL! as string
   ? `${process.env.BASE_URL}`
   : 'http://localhost:3000';
 
