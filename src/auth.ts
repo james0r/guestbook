@@ -2,9 +2,9 @@ import NextAuth, { AuthError } from "next-auth"
 import Google from "next-auth/providers/google"
 import Credentials from 'next-auth/providers/credentials'
 import bcrypt from 'bcryptjs'
-import { DrizzleAdapter } from '@auth/drizzle-adapter';
+import { DrizzleAdapter } from '@auth/drizzle-adapter'
 import { encode, decode } from 'next-auth/jwt'
-import { db } from '@/db';
+import { db } from '@/db'
 import {
   getUserById,
   // getUserByProviderAccountId,
@@ -16,7 +16,12 @@ class InvalidCredentialsError extends AuthError {
   message = 'Invalid credentials';
 }
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const {
+  handlers,
+  signIn,
+  signOut,
+  auth
+} = NextAuth({
   adapter: DrizzleAdapter(db),
   providers: [
     Google({ allowDangerousEmailAccountLinking: true }),
