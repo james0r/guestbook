@@ -32,11 +32,6 @@ const SignModal = ({ session }: any) => {
     router.push('/')
   }
 
-  const handleCommentChange = (e: any) => {
-    // setComment(e.target.value)
-    setCommentCharCount(e.target.value.length)
-  }
-
   const initialState = {
     success: null,
     errors: null
@@ -121,11 +116,12 @@ const SignModal = ({ session }: any) => {
             ])}>
               <AITextarea
                 name="comment"
-                onChange={handleCommentChange}
-                placeholder="Comment"
+                setCommentCharCount={setCommentCharCount}
+                placeholder="Comment or prompt AI to generate a response..."
                 className={cn([
                   'py-2',
-                  'px-4',
+                  'pl-4',
+                  'pr-8',
                   'w-full',
                   'border-2',
                   'border-black/25',
@@ -135,7 +131,6 @@ const SignModal = ({ session }: any) => {
                   'ring-gray-900',
                   'ring-offset-2'
                 ])}
-                rows={4}
               />
               <p className={cn([
                 'text-sm',
