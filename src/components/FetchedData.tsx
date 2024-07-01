@@ -26,7 +26,7 @@ const FetchedData = async () => {
   } catch(error: any) {
 
     return (
-      <div className="py-2 text-xs">
+      <div className="py-2 text-xs sm:text-sm">
         <p>Mock Error: {(error)}</p>
       </div>
     );

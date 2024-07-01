@@ -1,10 +1,8 @@
-import FetchedData from '@/components/FetchedData'
 import CreatedAtDate from '@/components/CreatedAtDate'
 import { getGuestsDesc } from '@/db/queries/guest'
 
 import Header from '@/components/layout/header/Header'
-
-export const fetchCache = 'force-no-store'
+import Footer from '@/components/layout/Footer'
 
 export default async function Page() {
   const guests = await getGuestsDesc()
@@ -40,12 +38,7 @@ export default async function Page() {
           </div>
         </div>
       </main>
-      <footer className="bg-gray-900 text-white py-4 px-6 flex justify-between items-center">
-        <FetchedData />
-        <span className="text-xs sm:text-sm tracking-wide">
-          Made by <a href="https://jamesauble.com" target="_blank" className="underline">James Auble</a>
-        </span>
-      </footer>
+      <Footer />
     </div>
   )
 }
