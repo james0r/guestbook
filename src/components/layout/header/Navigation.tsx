@@ -16,14 +16,11 @@ const Navigation = () => {
   return (
     <div className="flex gap-4 items-center">
       <Link href="?modal=info">
-        <Button variant="secondary">
-          <Layers
-            size={20}
-            className={cn([
-              'mr-2'
-            ])}
-          />
-          Tech Stack
+        <Button variant="secondary" className="px-3 sm:px-4">
+          <span className="block sm:mr-2">
+            <Layers size={20} />
+          </span>
+          <span className="hidden sm:block">Tech Used</span>
         </Button>
       </Link>
       {

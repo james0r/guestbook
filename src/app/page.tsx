@@ -10,7 +10,7 @@ export default async function Page() {
   const guests = await getGuestsDesc()
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-[100svh]">
       <Header />
       <main className="flex-1 bg-gray-100 py-8 px-6">
         <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-7xl mx-auto">
