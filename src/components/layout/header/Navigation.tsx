@@ -3,10 +3,11 @@
 import React from 'react'
 import Link from "next/link"
 import { Button } from "@/components/ui/Button"
-import { SquarePen, LogIn } from 'lucide-react'
+import { SquarePen, LogIn, Layers } from 'lucide-react'
 import { signIn } from "next-auth/react"
 import HeaderDropdown from '@/components/layout/header/HeaderDropdown'
 import { useSession } from "next-auth/react"
+import { cn } from "@/lib/utils"
 
 const Navigation = () => {
   const { data: session, status } = useSession()
@@ -14,17 +15,24 @@ const Navigation = () => {
 
   return (
     <div className="flex gap-4 items-center">
-      <div className="">
-        {
-          !user && (
-            <span className="">
-              <Link href="/sign-in">
-                <Button>Sign In</Button>
-              </Link>
-            </span>
-          )
-        }
-      </div>
+      <Link href="?modal=info">
+        <Button variant="secondary">
+          <Layers
+            size={20}
+            className={cn([
+              'mr-2'
+            ])}
+          />
+          Tech Stack
+        </Button>
+      </Link>
+      {
+        !user && (
+          <Link href="/sign-in">
+            <Button>Sign In</Button>
+          </Link>
+        )
+      }
       {
         user && (
           <>
@@ -33,7 +41,7 @@ const Navigation = () => {
                 <span className="block sm:hidden">
                   <SquarePen size={20} />
                 </span>
-                <span className="hidden sm:block">Sign guestbook</span>
+                <span className="hidden sm:block">Sign Guestbook</span>
               </Button>
             </Link>
           </>

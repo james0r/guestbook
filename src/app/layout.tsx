@@ -2,6 +2,7 @@ import { Libre_Franklin } from 'next/font/google'
 import './styles.css'
 import './globals.css'
 import SignGuestbookModal from "@/components/modals/SignGuestbookModal"
+import TechStackModal from "@/components/modals/TechStackModal"
 import { Suspense } from 'react'
 import { auth } from '@/auth'
 import type { Viewport, Metadata } from "next";
@@ -36,6 +37,7 @@ export default async function Layout({ children }: any) {
         {children}
         <Suspense>
           <SignGuestbookModal session={session} />
+          <TechStackModal />
         </Suspense>
         {/* <SessionConsumer session={session} /> */}
       </body>
