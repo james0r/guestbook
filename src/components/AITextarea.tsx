@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils'
 import { WandSparkles } from 'lucide-react'
 import { Tooltip } from 'react-tooltip'
 import { useCompletion } from 'ai/react'
-import { Button } from '@/components/ui/Button'
 import { LoaderCircle } from 'lucide-react'
 
 export interface AiTextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {

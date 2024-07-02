@@ -1,11 +1,8 @@
 "use client"
 
 import React from 'react'
-import UserAvatar from '@/components/UserAvatar'
 import { signOut } from "next-auth/react"
 import { cn } from '@/lib/utils'
-// import { useSession } from "next-auth/react"
-
 import {
   Popover,
   PopoverContent,

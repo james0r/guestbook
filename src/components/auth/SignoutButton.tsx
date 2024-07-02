@@ -1,6 +1,6 @@
 "use client"
+
 import { signOut } from "next-auth/react"
-import { redirect } from "next/navigation"
 import { ButtonHTMLAttributes } from "react"
 
 const SignoutButton = (

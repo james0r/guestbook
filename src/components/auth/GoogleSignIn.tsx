@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/Button'
 import { Icons } from '@/components/Icons'
-import { signIn, signOut } from '@/auth';
+import { signIn } from '@/auth';
 
 export default function GoogleSignIn() {
   return (

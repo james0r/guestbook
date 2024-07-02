@@ -1,6 +1,5 @@
 "use client"
 
-import Image from 'next/image'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar'
 
 export default function UserAvatar({ session }: any) {

@@ -1,11 +1,9 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
-import { useSearchParams, useRouter, redirect } from "next/navigation"
-import { useFormStatus, useFormState } from 'react-dom'
+import { useSearchParams, useRouter } from "next/navigation"
+import { useFormState } from 'react-dom'
 import { AnimatePresence } from "framer-motion"
-import { LoaderCircle } from 'lucide-react'
-// import { useSession } from "next-auth/react"
 import { SubmitButton } from '@/components/SubmitButton'
 
 import { cn } from "@/lib/utils"
@@ -19,8 +17,6 @@ const SignModal = ({ session }: any) => {
   const searchParams = useSearchParams()
   const modal = searchParams.get("modal")
   const [commentCharCount, setCommentCharCount] = useState(0)
-  const [name, setName] = useState('')
-  const [comment, setComment] = useState('')
   const [errors, setErrors] = useState(null as any)
   const router = useRouter()
 

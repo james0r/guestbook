@@ -2,7 +2,6 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import NavLink from './NavLink'
-import { signOut } from "next-auth/react"
 import SignoutButton from '@/components/auth/SignoutButton'
 import { Button } from '@/components/ui/Button'
 

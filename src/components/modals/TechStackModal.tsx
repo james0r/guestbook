@@ -1,18 +1,14 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
-import { useSearchParams, useRouter, redirect } from "next/navigation"
-import { useFormStatus, useFormState } from 'react-dom'
+import { useSearchParams, useRouter } from "next/navigation"
+import { useFormState } from 'react-dom'
 import { AnimatePresence } from "framer-motion"
 import { Layers } from 'lucide-react'
-// import { useSession } from "next-auth/react"
-import { SubmitButton } from '@/components/SubmitButton'
-
 import { cn } from "@/lib/utils"
 import { addGuest } from '@/actions/guestActions'
 import Modal from './Modal'
 import { Button } from '@/components/ui/Button'
-import AITextarea from '@/components/AITextarea'
 
 const TechStackModal = ({ session }: any) => {
   // const { data: session, status } = useSession()
