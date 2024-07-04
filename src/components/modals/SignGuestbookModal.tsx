@@ -67,7 +67,6 @@ const SignModal = ({ session }: any) => {
   )
 
   return (
-
     <AnimatePresence
       // Disable any initial animations on children that
       // are present when the component is first rendered
