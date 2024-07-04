@@ -1,7 +1,7 @@
 import React from 'react'
 import getJoke from '../../actions/getJoke'
 
-const Greet = async () => {
+const Joke = async () => {
   const data = await getJoke();
 
   if (!data.success) {
@@ -16,4 +16,4 @@ const Greet = async () => {
   )
 }
 
-export default Greet
+export default Joke
