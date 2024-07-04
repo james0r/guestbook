@@ -1,8 +1,6 @@
 "use client"
 
 import React from 'react'
-import SomeServerComponent from './SomeServerComponent'
-
 
 const SomeClientComponent = ({ children }: {
   children: React.ReactNode

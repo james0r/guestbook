@@ -1,6 +1,9 @@
 'use server'
+import { unstable_noStore as noStore } from 'next/cache';
 
 export default async function getJoke() {
+  noStore()
+
   try {
     const data = await fetch('https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,racist,sexist,explicit&type=single')
     const res = await data.json()
