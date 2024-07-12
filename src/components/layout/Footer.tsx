@@ -1,5 +1,5 @@
 import React from 'react'
-import FetchedData from '@/components/FetchedData'
+// import FetchedData from '@/components/FetchedData'
 import { FaGithub } from "react-icons/fa"
 import { cn } from '@/lib/utils'
 
@@ -8,7 +8,7 @@ export const fetchCache = 'force-no-store'
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-4 px-6 flex justify-start items-center relative">
-      <FetchedData />
+      {/* <FetchedData /> */}
       <div className={cn([
         'ml-auto',
         'flex',
