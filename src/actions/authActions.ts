@@ -8,6 +8,7 @@ import {
   createUser,
   deleteUser,
   deleteUserAccount,
+  addPasswordWithAccount,
 } from '@/db/queries/user'
 import {
   deleteToken,
@@ -456,6 +457,80 @@ export async function changePassword(
         password2: undefined,
       },
       message: error.message || 'Failed to change password.',
+    };
+  }
+}
+
+// =============================== addPassword ===============================
+const addPasswordSchema = z.object({
+  password: z.string().min(8, { message: 'Must be 8 or more characters long' }),
+  password2: z.string(),
+});
+export async function addPassword(
+  email: string,
+  prevState: any,
+  formData: FormData,
+) {
+  const validatedFields = addPasswordSchema.safeParse({
+    password: formData.get('password'),
+    password2: formData.get('password2'),
+  });
+
+  // Return early if the form data is invalid
+  if (!validatedFields.success) {
+    return {
+      type: 'error',
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Missing Fields!!',
+    };
+  }
+
+  // check for password match
+  if (validatedFields.data.password !== validatedFields.data.password2) {
+    return {
+      type: 'error',
+      errors: {
+        password: undefined,
+        password2: undefined,
+      },
+      message: 'Passwords do not match.',
+    };
+  }
+
+  try {
+    let user = await addPasswordWithAccount(
+      email,
+      validatedFields.data.password,
+    );
+
+    if (!user.success) {
+      return {
+        type: 'error',
+        errors: {
+          password: undefined,
+          password2: undefined,
+        },
+        message: user.message || 'Failed to reset password.',
+      };
+    }
+
+    // delete the token
+    await deleteToken(email);
+
+    return {
+      type: 'success',
+      errors: null,
+      message: user.message || 'Password added successfully.',
+    };
+  } catch (error: any) {
+    console.error('Failed to add password.', error);
+    return {
+      type: 'error',
+      errors: {
+        password: undefined,
+        password2: undefined,
+      },
+      message: error.message || 'Failed to add password.',
     };
   }
 }
