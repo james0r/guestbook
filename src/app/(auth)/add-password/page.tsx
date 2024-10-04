@@ -3,6 +3,7 @@ import GenericAuthLayout from '@/components/auth/GenericAuthLayout'
 import type { Metadata } from "next";
 import AddPasswordForm from './AddPasswordForm'
 import { getVerificationToken } from '@/db/queries/token'
+import { TokenNotFound } from '@/components/TokenNotFound'
 
 export const metadata: Metadata = {
   title: 'Add Password',
