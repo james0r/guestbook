@@ -20,6 +20,28 @@ export default async function AddPassword({
 
   const data = await getVerificationToken(token);
 
+  if (data.data?.expires! < new Date()) {
+    return (
+      <TokenNotFound
+        header='Token expired'
+        description='Token expired, please try again with a new token.'
+        url='/profile'
+        buttonText='Try again'
+      />
+    );
+  }
+
+  if (!data.success) {
+    return (
+      <TokenNotFound
+        header='Token is invalid'
+        description='Token is invalid, please try again with a new token.'
+        url='/profile'
+        buttonText='Sign Up'
+      />
+    );
+  }
+
   return (
     <GenericAuthLayout
       title="Add Password"
