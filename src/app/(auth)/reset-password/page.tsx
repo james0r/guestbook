@@ -9,7 +9,6 @@ export const metadata: Metadata = {
   title: 'Reset Password',
 }
 
-
 const ResetPassword = async ({
   searchParams,
 }: {
